@@ -25,3 +25,22 @@ options kvm-intel nested=y ept=y
 
 Also when setting up the ESX VM in KVM, choose "Copy host CPU configuration" under CPU and e1000 may be your best choice for NIC model.  ESXi 6.5 seems to require a minimum of 4 GB to run, or at least to install.  I'm using an IDE drive with it.
 
+--- 
+
+## Azure
+
+- Setup Ansible and Azure modules/repos
+```
+sudo -H pip3 install azure msrest msrestazure
+curl https://raw.githubusercontent.com/ansible-collections/azure/dev/requirements-azure.txt | sudo -H pip3 install --upgrade -r -
+```
+- Setup Azure CLI
+```
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+az login
+```
+- Install AzCopy
+
+https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
+
+You will need to create a ServicePrincipal with role assignment with enough provileges to perform the functions the playbook requires.
